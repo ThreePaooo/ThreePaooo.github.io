@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="方法一1234for x in range(1,12,2):    i = float(x) / 11    js = &apos;document.body.scrollTop=document.body.scrollHeight * %f&apos; % i    driver.execute_script(js) 方法二12345for i in range(1,6):    height = 20000*i">
+<meta name="description" content="方法一">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="懒加载网页信息获取的几种方法">
 <meta property="og:url" content="https://lijianzhao.top/2018/08/11/懒加载网页信息获取/index.html">
 <meta property="og:site_name" content="ThreePaooo的博客">
-<meta property="og:description" content="方法一1234for x in range(1,12,2):    i = float(x) / 11    js = &apos;document.body.scrollTop=document.body.scrollHeight * %f&apos; % i    driver.execute_script(js) 方法二12345for i in range(1,6):    height = 20000*i">
+<meta property="og:description" content="方法一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-15T04:48:14.302Z">
+<meta property="og:updated_time" content="2018-08-15T05:01:00.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="懒加载网页信息获取的几种方法">
-<meta name="twitter:description" content="方法一1234for x in range(1,12,2):    i = float(x) / 11    js = &apos;document.body.scrollTop=document.body.scrollHeight * %f&apos; % i    driver.execute_script(js) 方法二12345for i in range(1,6):    height = 20000*i">
+<meta name="twitter:description" content="方法一">
 
 
 
@@ -320,8 +320,8 @@
       
 
       
-        <a id="more"></a>
-<h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">12</span>,<span class="number">2</span>):</span><br><span class="line">    i = float(x) / <span class="number">11</span></span><br><span class="line">    js = <span class="string">'document.body.scrollTop=document.body.scrollHeight * %f'</span> % i</span><br><span class="line">    driver.execute_script(js)</span><br></pre></td></tr></table></figure>
+        <h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">12</span>,<span class="number">2</span>):</span><br><span class="line">    i = float(x) / <span class="number">11</span></span><br><span class="line">    js = <span class="string">'document.body.scrollTop=document.body.scrollHeight * %f'</span> % i</span><br><span class="line">    driver.execute_script(js)</span><br></pre></td></tr></table></figure>
 <h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">6</span>):</span><br><span class="line">    height = <span class="number">20000</span>*i<span class="comment">#每次滑动20000像素</span></span><br><span class="line">    strWord = <span class="string">"window.scrollBy(0,"</span>+str(height)+<span class="string">")"</span></span><br><span class="line">    driver.execute_script(strWord)</span><br><span class="line">    time.sleep(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 <h4 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">lastHeight = driver.execute_script(<span class="string">"return document.body.scrollHeight"</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">    driver.execute_script(<span class="string">"window.scrollTo(0, document.body.scrollHeight);"</span>)</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    newHeight = driver.execute_script(<span class="string">"return document.body.scrollHeight"</span>)</span><br><span class="line">    <span class="keyword">if</span> newHeight == lastHeight:</span><br><span class="line">         <span class="keyword">break</span></span><br><span class="line">    lastHeight = newHeight</span><br></pre></td></tr></table></figure>
       
@@ -353,8 +353,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/11/Redis数据库/" rel="next" title="Redis数据库的简单使用">
-                <i class="fa fa-chevron-left"></i> Redis数据库的简单使用
+              <a href="/2018/08/11/发送email/" rel="next" title="使用python发送Email">
+                <i class="fa fa-chevron-left"></i> 使用python发送Email
               </a>
             
           </div>
@@ -363,8 +363,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/14/ItemLoader处理数据/" rel="prev" title="ItemLoader处理数据">
-                ItemLoader处理数据 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/11/Redis数据库/" rel="prev" title="Redis数据库的简单使用">
+                Redis数据库的简单使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -464,7 +464,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

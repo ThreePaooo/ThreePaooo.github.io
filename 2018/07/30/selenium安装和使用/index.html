@@ -87,14 +87,14 @@
 <meta property="og:site_name" content="ThreePaooo的博客">
 <meta property="og:description" content="selenium简介selenium是一个自动化测试工具.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://lijianzhao.top/assets/img/FireFox.jpg">
-<meta property="og:image" content="https://lijianzhao.top/assets/img/Chrome.jpg">
-<meta property="og:image" content="https://lijianzhao.top/assets/img/locate.jpg">
-<meta property="og:updated_time" content="2018-08-15T04:44:29.705Z">
+<meta property="og:image" content="https://lijianzhao.top/images/FireFox.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/Chrome.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/locate.jpg">
+<meta property="og:updated_time" content="2018-08-15T05:13:16.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="selenium的安装和使用">
 <meta name="twitter:description" content="selenium简介selenium是一个自动化测试工具.">
-<meta name="twitter:image" content="https://lijianzhao.top/assets/img/FireFox.jpg">
+<meta name="twitter:image" content="https://lijianzhao.top/images/FireFox.jpg">
 
 
 
@@ -336,8 +336,8 @@
 <li>程序控制浏览器进行操作的时候，速度非常慢，所有要谨慎使用selenium.</li>
 <li>使用selenium控制浏览器的时候，需要下载浏览器对应的驱动程序.</li>
 <li>selenium为开源，免费，但是更新速度没有浏览器快，不是selenium<br>慢，而是浏览器更新快，要注意和浏览器之间的对应关系. <h2 id="selenium安装"><a href="#selenium安装" class="headerlink" title="selenium安装"></a>selenium安装</h2><h4 id="刚才提到的对应的驱动程序的下载地址如下"><a href="#刚才提到的对应的驱动程序的下载地址如下" class="headerlink" title="刚才提到的对应的驱动程序的下载地址如下:"></a>刚才提到的对应的驱动程序的下载地址如下:</h4></li>
-<li><a href="https://github.com/mozilla/geckodriver/releases" title="Google Chrome" target="_blank" rel="noopener">ChromeDriver</a><br><img src="/assets/img/FireFox.jpg" alt="效果" title="图片"></li>
-<li><a href="http://chromedriver.storage.googleapis.com/index.html" title="FireFox" target="_blank" rel="noopener">GeckoDriver</a><br>附:FireFox低版本下载<a href="https://download.mozilla.org/?product=firefox-58.0&amp;os=win&amp;lang=zh-CN" title="FireFox" target="_blank" rel="noopener">低版本</a><br><img src="/assets/img/Chrome.jpg" alt="效果" title="图片">   <h4 id="下载完驱动程序之后，解压，将解压出来的文件放到Anaconda的Scripts文件夹内，然后重启Pycharm"><a href="#下载完驱动程序之后，解压，将解压出来的文件放到Anaconda的Scripts文件夹内，然后重启Pycharm" class="headerlink" title="下载完驱动程序之后，解压，将解压出来的文件放到Anaconda的Scripts文件夹内，然后重启Pycharm."></a>下载完驱动程序之后，解压，将解压出来的文件放到Anaconda的Scripts文件夹内，然后重启Pycharm.</h4><img src="/assets/img/locate.jpg" alt="效果" title="图片"><h2 id="selenium使用"><a href="#selenium使用" class="headerlink" title="selenium使用"></a>selenium使用</h2></li>
+<li><a href="https://github.com/mozilla/geckodriver/releases" title="Google Chrome" target="_blank" rel="noopener">ChromeDriver</a><br><img src="/images/FireFox.jpg" alt="效果" title="图片"></li>
+<li><a href="http://chromedriver.storage.googleapis.com/index.html" title="FireFox" target="_blank" rel="noopener">GeckoDriver</a><br>附:FireFox低版本下载<a href="https://download.mozilla.org/?product=firefox-58.0&amp;os=win&amp;lang=zh-CN" title="FireFox" target="_blank" rel="noopener">低版本</a><br><img src="/images/Chrome.jpg" alt="效果" title="图片">   <h4 id="下载完驱动程序之后，解压，将解压出来的文件放到Anaconda的Scripts文件夹内，然后重启Pycharm"><a href="#下载完驱动程序之后，解压，将解压出来的文件放到Anaconda的Scripts文件夹内，然后重启Pycharm" class="headerlink" title="下载完驱动程序之后，解压，将解压出来的文件放到Anaconda的Scripts文件夹内，然后重启Pycharm."></a>下载完驱动程序之后，解压，将解压出来的文件放到Anaconda的Scripts文件夹内，然后重启Pycharm.</h4><img src="/images/locate.jpg" alt="效果" title="图片"><h2 id="selenium使用"><a href="#selenium使用" class="headerlink" title="selenium使用"></a>selenium使用</h2></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 引入网页驱动</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用网页驱动来运行谷歌浏览器</span></span><br><span class="line">driver = webdriver.Chrome()</span><br><span class="line"><span class="comment"># 通过驱动来执行指定的网页</span></span><br><span class="line">driver.get(<span class="string">'http://www.baidu.com'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># selenium提供了找到元素的方法find_element_by_XXXX，这些方法全部是用python实现的，</span></span><br><span class="line"><span class="comment"># 如果只是想对这个元素进行查找，定位，建议使用xpath或者css_selector，如果需要对找</span></span><br><span class="line"><span class="comment"># 到的内容进行点击等操作，建议使用find_element_by_XXXX</span></span><br><span class="line"><span class="comment"># 注意:在执行过程中可能会由于网络原因频繁报错，解决方法是，打开网页之后先休眠3-5秒钟，</span></span><br><span class="line"><span class="comment"># 在寻找元素.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过id来找</span></span><br><span class="line">driver.find_element_by_id(<span class="string">'kw'</span>).send_keys(<span class="string">'selenium'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过name值来找</span></span><br><span class="line">driver.find_element_by_name(<span class="string">'wd'</span>).send_keys(<span class="string">'github'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># unicode 如果后面有中文，那么前面需要加一个u</span></span><br><span class="line">driver.find_element_by_class_name(<span class="string">'s_ipt'</span>).send_keys(<span class="string">u'智游'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过样式寻找</span></span><br><span class="line">driver.find_element_by_css_selector(<span class="string">'#kw'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过标签名寻找</span></span><br><span class="line">driver.find_element_by_tag_name(<span class="string">'input'</span>).send_keys(<span class="string">'csdn'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过xpath语法定位一个元素</span></span><br><span class="line">driver.find_element_by_xpath(<span class="string">'//form[@id="form"]/span/input[@id="kw"]'</span>).send_keys(<span class="string">'123'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过超链接文本寻找</span></span><br><span class="line">driver.find_element_by_link_text(<span class="string">'贴吧'</span>).click()</span><br></pre></td></tr></table></figure>
 
@@ -481,7 +481,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
