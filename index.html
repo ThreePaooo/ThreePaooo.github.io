@@ -444,48 +444,14 @@
 
       
         
-          
-            <h3 id="scrapy简介"><a href="#scrapy简介" class="headerlink" title="scrapy简介"></a>scrapy简介</h3><p>  Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架.可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中.<br>  其最初是为了页面抓取(网络抓取)所设计的，也可以应用在获取API所返回的数据或者通用的网络爬虫.</p>
-<h3 id="scrapy安装"><a href="#scrapy安装" class="headerlink" title="scrapy安装"></a>scrapy安装</h3><h4 id="1-Anaconda"><a href="#1-Anaconda" class="headerlink" title="1.Anaconda"></a>1.Anaconda</h4><p>  如果你使用的Python环境是Anaconda，那么一条命令就可以完成scrapy的安装.<br>  <code>conda install scrapy</code></p>
-<h4 id="2-python"><a href="#2-python" class="headerlink" title="2.python"></a>2.python</h4><p>如果你是用的是Python，那么你需要确保安装以下几个程序来确保scrapy的正常使用.</p>
-<blockquote>
-</blockquote>
-<ol>
-<li>Twisted<br>下载地址:<a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted" title="Twisted" target="_blank" rel="noopener">https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted</a><br>选择适合自己的正确的版本进行下载<br><img src="/images/Twisted.jpg" alt="Twisted" title="效果"><br><img src="/images/twistedCmd.png" alt="cmd效果" title="效果">  </li>
-<li>pywin32<br>下载地址:<a href="https://github.com/mhammond/pywin32/releases" title="puwin32" target="_blank" rel="noopener">https://github.com/mhammond/pywin32/releases</a><br>选择适合自己的正确的版本进行下载<br><img src="/images/pywin32.png" alt="pywin32" title="效果">  </li>
-<li>pip<br>如果正在使用从Python.org下载的Python2&gt;=2.7.9或者Python3&gt;=3.4，则已经安装了pip，只需要对pip进行升级.<br><code>python -m pip install -U pip</code></li>
-</ol>
-<p>安装完以上几个程序之后，用pip来安装Scrapy.<br>    <code>pip install Scrapy</code>  </p>
-<p>安装完成之后，在控制台输入Scrapy，检测是否安装成功.如果出现下面的画面，则Scrapy安装成功.<br>  <img src="/images/cmd.png" alt="cmd效果" title="效果"></p>
-<h3 id="Scrapy简单使用"><a href="#Scrapy简单使用" class="headerlink" title="Scrapy简单使用"></a>Scrapy简单使用</h3><ol>
-<li>首先进入自己的工作目录<br><img src="/images/cmd1.png" alt="cmd1效果" title="效果">  </li>
-<li><p>输入scrapy显示可用的方法<br><img src="/images/cmd2.png" alt="cmd2效果" title="效果">  </p>
-<ul>
-<li>bench  运行benchmark测试  </li>
-<li>fetch  使用scrapy下载器下载给定的url，并将获取的内容送到标准输出  </li>
-<li>startproject  创建项目的时候使用</li>
-<li>genspider  在项目中创建spider</li>
-<li>setting  获取scrapy的设定，在项目运行时，该命令将会输出项目的设定值，否则会输出默认设定</li>
-<li>shell  以给定的URL或者空启动scrapy shell，进入shell之后可以进行你想要的操作</li>
-<li>version  输出scrapy的版本，配合-v使用，会同时输出python以及平台的信息，方便BUG提交</li>
-<li>view  在浏览器中打开给定的url，并以scrapy spider获取到的形式展现</li>
-<li>runspider  在未创建项目的情况下，运行一个编写在python文件中的spider    </li>
-</ul>
-</li>
-<li><p>使用scrapy startproject创建项目<br><img src="/images/cmd3.png" alt="cmd3效果" title="效果"><br><img src="/images/cmd4.png" alt="cmd4效果" title="效果">   </p>
-<ul>
-<li>items.py  定义爬虫程序的数据模型，类似于实体类。</li>
-<li>middlewares.py   爬虫中间件。</li>
-<li>pipelines.py  管道文件,负责对spider返回数据的处理。</li>
-<li>setting.py  负责对整个爬虫的配置</li>
-<li>scrapy.cfg scrapy  基础配置</li>
-<li>spiders目录  负责存放继承自scrapy的爬虫类。</li>
-</ul>
-</li>
-<li>使用genspider创建taobaoSpider爬虫程序<br><img src="/images/cmd5.png" alt="cmd5效果" title="效果"><br><img src="/images/cmd6.png" alt="cmd6效果" title="效果">  </li>
-</ol>
-
-          
+          <h3 id="scrapy简介"><a href="#scrapy简介" class="headerlink" title="scrapy简介"></a>scrapy简介</h3><p>  Scrapy是一个为了爬取网站数据，提取结构性数据而编写的应用框架.可以应用在包括数据挖掘，信息处理或存储历史数据等一系列的程序中.<br>  其最初是为了页面抓取(网络抓取)所设计的，也可以应用在获取API所返回的数据或者通用的网络爬虫.<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/08/01/scrapy的安装和简单使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
