@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://lijianzhao.top/images/nodejs3.jpg">
 <meta property="og:image" content="https://lijianzhao.top/images/nodejs4.jpg">
 <meta property="og:image" content="https://lijianzhao.top/images/nodejs5.jpg">
-<meta property="og:updated_time" content="2018-08-29T12:46:26.887Z">
+<meta property="og:updated_time" content="2018-08-29T14:34:16.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node.js的安装和使用">
 <meta name="twitter:description" content="本篇博客是NodeJs的安装过程和使用方法.">
@@ -347,7 +347,7 @@
 <li>在VS code中创建一个文件夹RegistAndLogin,右键这个文件夹,点击在终端中打开.<br><img src="/images/nodejs2.png" alt="Node.js"></li>
 <li>在终端中输入npm init命令,出现需要输入的命令行,都可以回车跳过,使用默认的选项.完成之后会生成一个配置文件package.json,保存整个项目的配置信息.<br><img src="/images/nodejs3.jpg" alt="Node.js"></li>
 <li>在RegistAndLogin文件夹下创建一个public文件夹(名字可自定义),存放静态文件,在public文件夹内创建文件index.html(必须创建,且名字不可自定义).并且在RegistAndLogin文件夹下创建文件index.js.<br><img src="/images/nodejs4.jpg" alt="Node.js"></li>
-<li>下载服务端运行的依赖性(本项目中使用的express).在终端中输入以下命令,下载express.<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express</span><br></pre></td></tr></table></figure>
+<li>下载服务端运行的依赖项(本项目中使用的express).在终端中输入以下命令,下载express.<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p><img src="/images/nodejs5.jpg" alt="Node.js"></p>
@@ -361,6 +361,15 @@
 <li><p>index.js</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">// <span class="number">1.</span>引入express</span><br><span class="line">var express = require(<span class="string">'express'</span>)</span><br><span class="line">// post请求方式会将参数放在请求体中 所以需要引入解析请求体的模块 body-parser</span><br><span class="line">var body_parser = require(<span class="string">'body-parser'</span>)</span><br><span class="line">// <span class="number">2.</span>实例化一个express的对象</span><br><span class="line">var web = express()</span><br><span class="line"></span><br><span class="line">// <span class="number">3.</span>使用静态文件public</span><br><span class="line">web.use(express.static(<span class="string">'public'</span>))</span><br><span class="line">// 设置对url进行编码 并且不允许url进行扩展</span><br><span class="line">// 如果设置为false 那么参数只能为数组或者字符串</span><br><span class="line">// 如果设置为true 那么参数为任意类型</span><br><span class="line">web.use(body_parser.urlencoded(&#123;<span class="string">'extended'</span>:false&#125;))</span><br><span class="line"></span><br><span class="line">// 存储注册成功以后的账号密码</span><br><span class="line">db_acount = <span class="string">''</span></span><br><span class="line">db_password = <span class="string">''</span></span><br><span class="line">web.get(<span class="string">'/regist'</span>, function (req, res) &#123;</span><br><span class="line">    var username = req.query.username</span><br><span class="line">    var password = req.query.password</span><br><span class="line">    var passwordAgain = req.query.passwordAgain</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (username != db_acount &amp;&amp; password == passwordAgain) &#123;</span><br><span class="line">        db_acount = username</span><br><span class="line">        db_password = password</span><br><span class="line">        res.send(<span class="string">'注册成功,账号是:'</span> + username + <span class="string">',密码是:'</span> + password + <span class="string">',请妥善保管'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        res.send(<span class="string">'很抱歉,注册失败,账号已存在或者密码不一致'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">web.post(<span class="string">'/login'</span>, function (req, res) &#123;</span><br><span class="line">    var l_username = req.body.l_username</span><br><span class="line">    var l_password = req.body.l_password</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (l_username == db_acount &amp;&amp; l_password == db_password) &#123;</span><br><span class="line">        res.send(<span class="string">'登录成功'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        res.send(<span class="string">'登录失败,请检查账号和密码'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">web.listen(<span class="string">'8080'</span>, function () &#123;</span><br><span class="line">    console.log(<span class="string">'服务器正在运行中...'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<ol start="6">
+<li>启动服务端</li>
+</ol>
+<ul>
+<li>命令:node index</li>
+<li>访问的时候不能用本地地址访问,要用(localhost:端口号)进行访问.</li>
+<li>如果服务端代码修改,需要重启服务器.</li>
+<li>不能在多终端中运行同一个服务器.</li>
 </ul>
 
       
