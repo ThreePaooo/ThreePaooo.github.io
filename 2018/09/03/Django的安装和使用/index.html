@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="爬虫," />
+  <meta name="keywords" content="django," />
 
 
 
@@ -79,18 +79,29 @@
 
 
 
-<meta name="description" content="爬虫练习">
-<meta name="keywords" content="爬虫">
+<meta name="description" content="本篇博客是Django的安装和简单使用.">
+<meta name="keywords" content="django">
 <meta property="og:type" content="article">
-<meta property="og:title" content="美食杰模拟登录">
-<meta property="og:url" content="https://lijianzhao.top/2018/07/25/美食杰模拟登录/index.html">
+<meta property="og:title" content="Django的安装和使用">
+<meta property="og:url" content="https://lijianzhao.top/2018/09/03/Django的安装和使用/index.html">
 <meta property="og:site_name" content="ThreePaooo的博客">
-<meta property="og:description" content="爬虫练习">
+<meta property="og:description" content="本篇博客是Django的安装和简单使用.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-15T04:41:24.129Z">
+<meta property="og:image" content="https://lijianzhao.top/images/django9.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django1.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django2.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django3.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django4.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django10.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django5.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django11.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django7.jpg">
+<meta property="og:image" content="https://lijianzhao.top/images/django8.jpg">
+<meta property="og:updated_time" content="2018-09-03T12:45:55.723Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="美食杰模拟登录">
-<meta name="twitter:description" content="爬虫练习">
+<meta name="twitter:title" content="Django的安装和使用">
+<meta name="twitter:description" content="本篇博客是Django的安装和简单使用.">
+<meta name="twitter:image" content="https://lijianzhao.top/images/django9.jpg">
 
 
 
@@ -120,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://lijianzhao.top/2018/07/25/美食杰模拟登录/"/>
+  <link rel="canonical" href="https://lijianzhao.top/2018/09/03/Django的安装和使用/"/>
 
 
 
 
 
-  <title>美食杰模拟登录 | ThreePaooo的博客</title>
+  <title>Django的安装和使用 | ThreePaooo的博客</title>
   
 
 
@@ -243,7 +254,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/25/美食杰模拟登录/">
+    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/09/03/Django的安装和使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李建昭">
@@ -260,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">美食杰模拟登录</h1>
+          <h1 class="post-title" itemprop="name headline">Django的安装和使用</h1>
         
 
         <div class="post-meta">
@@ -272,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-25T00:00:00+08:00">
-                2018-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-03T00:00:00+08:00">
+                2018-09-03
               </time>
             
 
@@ -310,7 +321,83 @@
       
 
       
-        <p>爬虫练习<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> Request,HTTPCookieProcessor,build_opener</span><br><span class="line"><span class="keyword">from</span> http.cookiejar <span class="keyword">import</span> LWPCookieJar,CookieJar</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到cookie并且存储</span></span><br><span class="line">cookie = LWPCookieJar(filename=<span class="string">'meishi.txt'</span>)</span><br><span class="line">cookie_handler = HTTPCookieProcessor(cookie)</span><br><span class="line">opener = build_opener(cookie_handler)</span><br><span class="line">post_url = <span class="string">'https://i.meishi.cc/login.php?redirect=https%3A%2F%2Fwww.meishij.net%2F'</span></span><br><span class="line">post_data=urlencode(&#123;</span><br><span class="line">    <span class="string">'username'</span>:<span class="string">'*******'</span>, <span class="comment"># 此处为你的用户名</span></span><br><span class="line">    <span class="string">'password'</span>:<span class="string">'*******'</span>  <span class="comment"># 此处为你的用户密码</span></span><br><span class="line">&#125;)</span><br><span class="line">request = Request(post_url,bytes(post_data,encoding=<span class="string">'utf-8'</span>))</span><br><span class="line">response = opener.open(request).read().decode()</span><br><span class="line">cookie.save(ignore_expires=<span class="keyword">True</span>,ignore_discard=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用cookie模拟登录</span></span><br><span class="line">cookie = LWPCookieJar()</span><br><span class="line">cookie.load(<span class="string">'meishi.txt'</span>)</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0'</span></span><br><span class="line">&#125;</span><br><span class="line">request = Request(post_url,headers=headers)</span><br><span class="line">response = opener.open(request).read().decode()</span><br><span class="line">print(response)</span><br></pre></td></tr></table></figure></p>
+        <p>本篇博客是Django的安装和简单使用.<br><a id="more"></a></p>
+<h3 id="什么是Django"><a href="#什么是Django" class="headerlink" title="什么是Django?"></a>什么是Django?</h3><p>Python下有许多款不同的Web框架.Django是重量级选手中最有代表性的一位.许多成功的网站和APP都基于Django.<br>Django是一个开放源代码的Web应用框架,由Python写成.<br>Django遵守BSD版权,初次发布于2005年7月,并于2008年9月发布了第一个正式版本1.0.<br>Django采用了MVC的软件设计模式,即模型M,视图V和控制器C.</p>
+<h3 id="Django安装"><a href="#Django安装" class="headerlink" title="Django安装"></a>Django安装</h3><ol>
+<li>打开cmd窗口,输入下面的命令安装Django.<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install django(可选择要安装的版本号:pip install django == 版本号)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>注意:不同的django版本支持的python版本不同,根据自己安装的python版本选择正确的django版本进行安装.<br>Django版本对应的Python版本:</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Django版本</th>
+<th>Python版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.8</td>
+<td>2.7, 3.2 , 3.3, 3.4, 3.5</td>
+</tr>
+<tr>
+<td>1.9, 1.10</td>
+<td>2.7, 3.4, 3.5</td>
+</tr>
+<tr>
+<td>1.11</td>
+<td>2.7, 3.4, 3.5, 3.6</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>3.5+</td>
+</tr>
+</tbody>
+</table>
+<ol start="2">
+<li>安装完成之后,输入下面的命令检查是否安装成功.如果安装成功,会出现结果如图1所示.<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin --vision</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/images/django9.jpg" alt="Django" title="图1"></p>
+<h3 id="Django使用"><a href="#Django使用" class="headerlink" title="Django使用"></a>Django使用</h3><p>安装完成之后,开始我们的第一个Django项目吧.</p>
+<ol>
+<li>创建一个文件夹DjangoTest,使用cmd进入这个文件夹,输入下面的命令创建django项目.<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startproject test1</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>此时目录结构如图2所示.<br><img src="/images/django1.jpg" alt="Django" title="图2"></p>
+<ol start="2">
+<li>目录内有两个test1目录,进入外层的test1,输入下面的命令启动项目.<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver <span class="number">8080</span>(默认端口为<span class="number">8000</span>,可指定端口号)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如图3所示则表明启动成功.<br><img src="/images/django2.jpg" alt="Django" title="图3"><br>在浏览器输入<a href="http://localhost:8080访问,结果如图4" target="_blank" rel="noopener">http://localhost:8080访问,结果如图4</a>.<br><img src="/images/django3.jpg" alt="Django" title="图4"></p>
+<ol start="3">
+<li>创建app(application),命令为:<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">django-admin startapp testApp</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>app目录结构如下:<br><img src="/images/django4.jpg" alt="Django" title="图5"></p>
+<ol start="4">
+<li>渲染之中的view.py.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">appTest</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="comment"># 注意:此处需要接收一个请求对象并且返回一个响应对象</span></span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">'Hello World'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>在urls中设置路径.<br><img src="/images/django10.jpg" alt="Django" title="图6"></li>
+<li>最后在浏览器输入<a href="http://localhost:8080/test1访问" target="_blank" rel="noopener">http://localhost:8080/test1访问</a>.<br><img src="/images/django5.jpg" alt="Django" title="图7"></li>
+</ul>
+<ol start="5">
+<li>上面的这种渲染方式内容单薄且不易添加,所以可以使用html文件当作模板来渲染views.py.</li>
+</ol>
+<ul>
+<li>首先创建一个文件夹templates放置模板文件.然后创建一个html文件test1.html,里面的内容如下:<br><img src="/images/django11.jpg" alt="Django" title="图8"></li>
+<li><p>接下来在view.pyz中设置渲染的方式.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">viewTest</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'test1.html'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后再settings.py中设置路径.<br><img src="/images/django7.jpg" alt="Django" title="图9"></p>
+</li>
+<li><p>在浏览器输入<a href="http://localhost:8080/test1访问" target="_blank" rel="noopener">http://localhost:8080/test1访问</a>.<br><img src="/images/django8.jpg" alt="Django" title="图10"></p>
+</li>
+</ul>
 
       
     </div>
@@ -328,7 +415,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+            <a href="/tags/django/" rel="tag"># django</a>
           
         </div>
       
@@ -341,8 +428,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/25/requests,cookie/" rel="next" title="requests/cookie/xpath">
-                <i class="fa fa-chevron-left"></i> requests/cookie/xpath
+              <a href="/2018/08/29/Node.js的安装和使用/" rel="next" title="Node.js的安装和使用">
+                <i class="fa fa-chevron-left"></i> Node.js的安装和使用
               </a>
             
           </div>
@@ -350,10 +437,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/26/xpath用法/" rel="prev" title="xpath用法">
-                xpath用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -405,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -488,6 +580,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Django"><span class="nav-number">1.</span> <span class="nav-text">什么是Django?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django安装"><span class="nav-number">2.</span> <span class="nav-text">Django安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Django使用"><span class="nav-number">3.</span> <span class="nav-text">Django使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -239,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/25/requests,cookie/">
+    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/26/xpath用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李建昭">
@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/25/requests,cookie/" itemprop="url">requests/cookie/xpath</a></h1>
+                <a class="post-title-link" href="/2018/07/26/xpath用法/" itemprop="url">xpath用法</a></h1>
         
 
         <div class="post-meta">
@@ -270,8 +270,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-25T00:00:00+08:00">
-                2018-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-26T00:00:00+08:00">
+                2018-07-26
               </time>
             
 
@@ -309,14 +309,10 @@
 
       
         
-          <h3 id="requests"><a href="#requests" class="headerlink" title="requests"></a>requests</h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/25/requests,cookie/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># e element 元素，节点，标签</span></span><br><span class="line"><span class="comment"># tree 树</span></span><br><span class="line"><span class="comment"># etree 标签树</span></span><br><span class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">htmlStr = <span class="string">"""</span></span><br><span class="line"><span class="string">&lt;a href="https://www.baidu.com"&gt;</span></span><br><span class="line"><span class="string">百度一下，你就知道</span></span><br><span class="line"><span class="string">&lt;/a&gt;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 将字符串转化成标签</span></span><br><span class="line"><span class="comment"># 该方法会检测字符串内容是否为标签样式</span></span><br><span class="line"><span class="comment"># 但是不能检测出内容是否为真的标签</span></span><br><span class="line">result = etree.fromstring(htmlStr)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># parse 解析</span></span><br><span class="line">html = etree.parse(<span class="string">'index.html'</span>)</span><br><span class="line">print(html)</span><br><span class="line"></span><br><span class="line">a = html.xpath(<span class="string">'//a'</span>)</span><br><span class="line">print(a)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定标签的类名</span></span><br><span class="line">result = html.xpath(<span class="string">'//a/@class'</span>)</span><br><span class="line">print(result)</span><br><span class="line"><span class="comment"># 找到所有a标签的id</span></span><br><span class="line">result = html.xpath(<span class="string">'//a/@id'</span>)</span><br><span class="line">print(result)</span><br><span class="line"><span class="comment"># 找到所有标签的超链接属性</span></span><br><span class="line">result = html.xpath(<span class="string">'//a/@href'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到指定的文本内容</span></span><br><span class="line">result = html.xpath(<span class="string">'//a/text()'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果找某一个标签的文本，而这个标签下面还有其他的标签</span></span><br><span class="line"><span class="comment"># 那么只找这个标签的文本，其他标签的文本不找</span></span><br><span class="line">result = html.xpath(<span class="string">'//div/text()'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># //text()找到本标签以及所有子标签的文本</span></span><br><span class="line">result = html.xpath(<span class="string">'//div//text()'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定id名字的标签的文本</span></span><br><span class="line">result = html.xpath(<span class="string">'//ul/li/a[@id="jd"]/text()'</span>)</span><br><span class="line">print(result[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># last()获取最后一个标签</span></span><br><span class="line">result = html.xpath(<span class="string">'//ul/li[last()]'</span>)[<span class="number">0</span>]</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定类名标签的文本</span></span><br><span class="line">result = html.xpath(<span class="string">'//a[@class="shopping"]/text()'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># contains 包含指定属性</span></span><br><span class="line">result = html.xpath(<span class="string">'//div[@class="now"]/p[contains(@class,"third")]/text()'</span>)</span><br><span class="line">print(result)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到所有的ul</span></span><br><span class="line"><span class="comment"># 找到所有ul中所有的a标签</span></span><br><span class="line"><span class="comment"># 获取a标签文本和所有a标签的子标签的文本</span></span><br><span class="line">result = html.xpath(<span class="string">'//ul//a//text()'</span>)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+          
         
       
     </div>
@@ -437,6 +433,130 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/25/美食杰模拟登录/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/25/requests,cookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李建昭">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ThreePaooo的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/25/requests,cookie/" itemprop="url">requests/cookie/xpath</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-25T00:00:00+08:00">
+                2018-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="requests"><a href="#requests" class="headerlink" title="requests"></a>requests</h3>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/25/requests,cookie/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -859,7 +979,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/21/51job招聘信息爬虫/">
+    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/21/爬取美女壁纸/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李建昭">
@@ -878,7 +998,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/21/51job招聘信息爬虫/" itemprop="url">招聘信息爬虫</a></h1>
+                <a class="post-title-link" href="/2018/07/21/爬取美女壁纸/" itemprop="url">爬取美女壁纸</a></h1>
         
 
         <div class="post-meta">
@@ -932,7 +1052,7 @@
           <p>爬虫练习<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/21/51job招聘信息爬虫/#more" rel="contents">
+            <a class="btn" href="/2018/07/21/爬取美女壁纸/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1107,7 +1227,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/21/爬取美女壁纸/">
+    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/21/51job招聘信息爬虫/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="李建昭">
@@ -1126,7 +1246,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/21/爬取美女壁纸/" itemprop="url">爬取美女壁纸</a></h1>
+                <a class="post-title-link" href="/2018/07/21/51job招聘信息爬虫/" itemprop="url">招聘信息爬虫</a></h1>
         
 
         <div class="post-meta">
@@ -1180,7 +1300,7 @@
           <p>爬虫练习<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/07/21/爬取美女壁纸/#more" rel="contents">
+            <a class="btn" href="/2018/07/21/51job招聘信息爬虫/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1342,152 +1462,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/17/python常见错误/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李建昭">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ThreePaooo的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/17/python常见错误/" itemprop="url">Python常见错误</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T00:00:00+08:00">
-                2018-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index">
-                    <span itemprop="name">test</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在python的基础知识学习中，由于基础的薄弱，导致写代码的过程中会出现各种各样的错误。但是初学者面对这些错误的时候，解决能力较弱。接下来列举几种常见的错误类型，并给出解决方案。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/17/python常见错误/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1538,7 +1512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1560,7 +1534,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
