@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="爬虫," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,13 @@
 
 
 
-<meta name="description" content="爬虫练习">
-<meta name="keywords" content="爬虫">
-<meta property="og:type" content="article">
-<meta property="og:title" content="美食杰模拟登录">
-<meta property="og:url" content="https://lijianzhao.top/2018/07/25/美食杰模拟登录/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ThreePaooo的博客">
+<meta property="og:url" content="https://lijianzhao.top/archives/2018/10/index.html">
 <meta property="og:site_name" content="ThreePaooo的博客">
-<meta property="og:description" content="爬虫练习">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-15T04:41:24.129Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="美食杰模拟登录">
-<meta name="twitter:description" content="爬虫练习">
+<meta name="twitter:title" content="ThreePaooo的博客">
 
 
 
@@ -120,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="https://lijianzhao.top/2018/07/25/美食杰模拟登录/"/>
+  <link rel="canonical" href="https://lijianzhao.top/archives/2018/10/"/>
 
 
 
 
 
-  <title>美食杰模拟登录 | ThreePaooo的博客</title>
+  <title>归档 | ThreePaooo的博客</title>
   
 
 
@@ -145,7 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -229,151 +224,73 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      <span class="archive-page-counter">
+        
+        
+         
+        
+        OK! 目前共计 34 篇日志。 继续努力。
+      </span>
 
-  
-  
-  
+      
+
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2018">2018</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/07/25/美食杰模拟登录/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="李建昭">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ThreePaooo的博客">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">美食杰模拟登录</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2018/10/20/Centos 7 下部署Django + uWSGI + Nginx/" itemprop="url">
               
-                <span class="post-meta-item-text">发表于</span>
+                <span itemprop="name">CentOS 7 下部署Django + uWSGI + Nginx</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-25T00:00:00+08:00">
-                2018-07-25
-              </time>
-            
+            </a>
+        
+      </h2>
 
-            
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-10-20T00:00:00+08:00"
+              content="2018-10-20" >
+          10-20
+        </time>
+      </div>
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>爬虫练习<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> Request,HTTPCookieProcessor,build_opener</span><br><span class="line"><span class="keyword">from</span> http.cookiejar <span class="keyword">import</span> LWPCookieJar,CookieJar</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找到cookie并且存储</span></span><br><span class="line">cookie = LWPCookieJar(filename=<span class="string">'meishi.txt'</span>)</span><br><span class="line">cookie_handler = HTTPCookieProcessor(cookie)</span><br><span class="line">opener = build_opener(cookie_handler)</span><br><span class="line">post_url = <span class="string">'https://i.meishi.cc/login.php?redirect=https%3A%2F%2Fwww.meishij.net%2F'</span></span><br><span class="line">post_data=urlencode(&#123;</span><br><span class="line">    <span class="string">'username'</span>:<span class="string">'*******'</span>, <span class="comment"># 此处为你的用户名</span></span><br><span class="line">    <span class="string">'password'</span>:<span class="string">'*******'</span>  <span class="comment"># 此处为你的用户密码</span></span><br><span class="line">&#125;)</span><br><span class="line">request = Request(post_url,bytes(post_data,encoding=<span class="string">'utf-8'</span>))</span><br><span class="line">response = opener.open(request).read().decode()</span><br><span class="line">cookie.save(ignore_expires=<span class="keyword">True</span>,ignore_discard=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用cookie模拟登录</span></span><br><span class="line">cookie = LWPCookieJar()</span><br><span class="line">cookie.load(<span class="string">'meishi.txt'</span>)</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0'</span></span><br><span class="line">&#125;</span><br><span class="line">request = Request(post_url,headers=headers)</span><br><span class="line">response = opener.open(request).read().decode()</span><br><span class="line">print(response)</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/07/24/糗百懒加载/" rel="next" title="糗百懒加载">
-                <i class="fa fa-chevron-left"></i> 糗百懒加载
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/25/requests,cookie/" rel="prev" title="requests/cookie/xpath">
-                requests/cookie/xpath <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
       
+
     </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
@@ -381,10 +298,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -628,10 +541,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="django," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本篇博客是使用uWSGI和Nginx在CentOS中部署Django项目.">
+<meta name="keywords" content="django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS 7 下部署Django + uWSGI + Nginx">
+<meta property="og:url" content="https://lijianzhao.top/2018/10/20/Centos 7 下部署Django + uWSGI + Nginx/index.html">
+<meta property="og:site_name" content="ThreePaooo的博客">
+<meta property="og:description" content="本篇博客是使用uWSGI和Nginx在CentOS中部署Django项目.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-20T02:28:45.811Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS 7 下部署Django + uWSGI + Nginx">
+<meta name="twitter:description" content="本篇博客是使用uWSGI和Nginx在CentOS中部署Django项目.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lijianzhao.top/2018/10/20/Centos 7 下部署Django + uWSGI + Nginx/"/>
+
+
+
+
+
+  <title>CentOS 7 下部署Django + uWSGI + Nginx | ThreePaooo的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ThreePaooo的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">生死是苦,涅槃是乐.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lijianzhao.top/2018/10/20/Centos 7 下部署Django + uWSGI + Nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="李建昭">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ThreePaooo的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CentOS 7 下部署Django + uWSGI + Nginx</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-20T00:00:00+08:00">
+                2018-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇博客是使用uWSGI和Nginx在CentOS中部署Django项目.<br><a id="more"></a></p>
+<h3 id="所需环境"><a href="#所需环境" class="headerlink" title="所需环境"></a>所需环境</h3><ul>
+<li>CentOS 7 x86_64</li>
+<li>Python3.6</li>
+<li>Nginx</li>
+<li>uWSGI</li>
+</ul>
+<h3 id="环境的安装"><a href="#环境的安装" class="headerlink" title="环境的安装"></a>环境的安装</h3><ol>
+<li>CentOS<blockquote>
+<p>可购买云服务器，也可创建虚拟机. 虚拟机的创建方法自行查阅，此处不再赘述.</p>
+</blockquote>
+</li>
+<li>Python3.6<blockquote>
+<p>CentOS自带Python2.7，但是不是我们需要的，所以需要安装Python3.6.由于CentOS许多软件依赖于系统自带Python，所以不能删除，否则会出问题.</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><p>首先安装依赖工具</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载Python3.6压缩包</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/<span class="number">3</span>.<span class="number">6</span>.<span class="number">5</span>/Python-<span class="number">3</span>.<span class="number">6</span>.<span class="number">5</span>.tgz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将下载的压缩包解压到CentOS存放系统工具的目录下</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-<span class="number">3</span>.<span class="number">6</span>.<span class="number">5</span>.tgz /usr/local</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装</p>
+<ul>
+<li>cd /usr/local/Python-3.6.5/</li>
+<li>./configure</li>
+<li>make &amp; make install</li>
+</ul>
+</li>
+<li>验证<blockquote>
+<p>在/user/local目录下执行 ./python 命令，如果进入的是python3.6，则说明安装成功.</p>
+</blockquote>
+<h5 id="注意：依赖工具要在安装python3-6之前安装，否则后面在虚拟环境中安装uWSGI时，可能会报错"><a href="#注意：依赖工具要在安装python3-6之前安装，否则后面在虚拟环境中安装uWSGI时，可能会报错" class="headerlink" title="注意：依赖工具要在安装python3.6之前安装，否则后面在虚拟环境中安装uWSGI时，可能会报错."></a>注意：依赖工具要在安装python3.6之前安装，否则后面在虚拟环境中安装uWSGI时，可能会报错.</h5></li>
+</ul>
+<ol start="3">
+<li>创建虚拟环境</li>
+</ol>
+<ul>
+<li>/usr/local/Python-3.6.5/python -m venv /home/个人目录/py3.6env</li>
+<li>source /home/个人目录/py3.6nev/bin/activate  进入虚拟环境</li>
+</ul>
+<p>4.安装uWSGI</p>
+<ul>
+<li><p>进入虚拟环境，在虚拟环境中安装依赖于python3.6的uwsgi版本.</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证是否安装成功.</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim test.py</span><br><span class="line"></span><br><span class="line">def application(env, start_response):</span><br><span class="line">    start_response('<span class="number">200</span> OK', [('Content-<span class="built_in">Type</span>','text/html')])</span><br><span class="line">    return [b"Hello Django"]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --http :<span class="number">8001</span> --wsgi-file test.py</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>执行上述命令。浏览器访问，如果网页显示Hello Django，说明安装成功.</p>
+</blockquote>
+<p>5.安装Nginx</p>
+<ul>
+<li>配置源<br>vim /etc/yum.repos.d/nginx.repo 添加下面内容.<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http://nginx.org/packages/mainline/centos/<span class="number">7</span>/x86_64/</span><br><span class="line">gpgcheck=<span class="number">0</span></span><br><span class="line">enabled=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>gpkcheck=0 表示对从这个源下载的rpm包不进行校验；<br>enable=1 表示启用这个源.</p>
+<ul>
+<li><p>退出虚拟环境，执行下面的命令安装nginx.</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动nginx</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">start</span> nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改默认监听端口号(默认为80)</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/default.conf</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">8089</span>;</span><br><span class="line">    listen [::]:<span class="number">8089</span>;</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>systemctl restart nginx 重启nginx，直接访问<a href="http://ip:8089" target="_blank" rel="noopener">http://ip:8089</a> 能看到nginx的欢迎界面即可.</p>
+</li>
+</ul>
+<h3 id="配置项目"><a href="#配置项目" class="headerlink" title="配置项目"></a>配置项目</h3><h5 id="安装django项目依赖的包"><a href="#安装django项目依赖的包" class="headerlink" title="安装django项目依赖的包"></a>安装django项目依赖的包</h5><ul>
+<li>在虚拟环境下安装下列软件包.<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Django==<span class="number">2</span>.<span class="number">1</span>.<span class="number">2</span></span><br><span class="line">django-haystack==<span class="number">2</span>.<span class="number">8</span>.<span class="number">1</span></span><br><span class="line">mysqlclient==<span class="number">1</span>.<span class="number">3</span>.<span class="number">13</span></span><br><span class="line">pytz==<span class="number">2018</span>.<span class="number">5</span></span><br><span class="line">uWSGI==<span class="number">2</span>.<span class="number">0</span>.<span class="number">17</span>.<span class="number">1</span></span><br><span class="line">Whoosh==<span class="number">2</span>.<span class="number">7</span>.<span class="number">4</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="在项目目录下配置uwsgi启动django的参数"><a href="#在项目目录下配置uwsgi启动django的参数" class="headerlink" title="在项目目录下配置uwsgi启动django的参数"></a>在项目目录下配置uwsgi启动django的参数</h5><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">vim django_uwsgi.ini  # 名称可自定义，建议和项目同名，用于启动django项目</span><br><span class="line"></span><br><span class="line">[uwsgi]</span><br><span class="line"># 通过uwsgi访问django需要配置成http</span><br><span class="line"># 通过nginx请求uwsgi来访问django 需要配置成socket</span><br><span class="line"># <span class="number">9000</span> 是django的端口号</span><br><span class="line">socket = :<span class="number">9000</span></span><br><span class="line"></span><br><span class="line"># web项目根目录</span><br><span class="line"><span class="built_in">chdir</span> = /home/root/pydj/django_one</span><br><span class="line"></span><br><span class="line"># module指定项目自带的的wsgi配置文件位置</span><br><span class="line">module = django_one.wsgi</span><br><span class="line"></span><br><span class="line"># 允许存在主进程</span><br><span class="line">master = true</span><br><span class="line"></span><br><span class="line"># 开启进程数量</span><br><span class="line">processes = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"># 服务器退出时自动清理环境</span><br><span class="line">vacuum = true</span><br></pre></td></tr></table></figure>
+<h5 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h5><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">user root;  # 以root用户启动nginx,否则可能会因为权限问题而丢失所有样式</span><br></pre></td></tr></table></figure>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/fresh.conf</span><br><span class="line"></span><br><span class="line"># 在/etc/nginx/conf.d/路径下新建一个conf文件，建议与项目同名，在里面添加下面内容</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       <span class="number">8089</span>;</span><br><span class="line">    listen      [::]:<span class="number">8089</span>;</span><br><span class="line">    server_name <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span> <span class="number">192</span>.<span class="number">168</span>.<span class="number">10</span>.<span class="number">114</span>; </span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        include /etc/nginx/uwsgi_params;</span><br><span class="line">        uwsgi_pass <span class="number">127</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>:<span class="number">9000</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    location /static&#123;</span><br><span class="line">        alias /home/root/pydj/django_one/sign/static;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>8089是对外的端口号</li>
+<li>server_name nginx代理uwsgi对外的ip,192.168.10.114为nginx服务器所在的ip</li>
+<li>127.0.0.1:9000 即当nginx服务器收到8089端口的请求时，直接将请求转发给 127.0.0.1:9000</li>
+<li>由于修改的nginx的配置文件，所以需要重启nginx服务<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="配置项目文件-setting-py"><a href="#配置项目文件-setting-py" class="headerlink" title="配置项目文件(setting.py)"></a>配置项目文件(setting.py)</h5><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">DEBUG - FALSE;  # 关闭调试模式</span><br><span class="line"></span><br><span class="line">ALLOWED_HOSTS = ["*"]  # 允许访问的主机</span><br><span class="line"></span><br><span class="line"># 数据库配置</span><br><span class="line">DATABASES = &#123;</span><br><span class="line"></span><br><span class="line">    'default': &#123;</span><br><span class="line"></span><br><span class="line">        'ENGINE': 'django.db.backends.mysql',</span><br><span class="line"></span><br><span class="line">        'NAME': 'fresh',</span><br><span class="line"></span><br><span class="line">        'HOST':'<span class="number">192</span>.<span class="number">168</span>.<span class="number">98</span>.<span class="number">1</span>',  #数据库服务器的地址</span><br><span class="line"></span><br><span class="line">        'USER':'root',</span><br><span class="line"></span><br><span class="line">        'PASSWORD':'<span class="number">123456</span>',</span><br><span class="line"></span><br><span class="line">        'PORT':<span class="number">3306</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># 静态资源配置</span><br><span class="line">STATIC_URL = '/static/'   # 默认</span><br><span class="line"></span><br><span class="line"># STATIC_ROOT用于收集项目下静态资源,STATICFILES_DIRS和STATIC_ROOT不能共存,注销STATICFILES_DIRS</span><br><span class="line">#STATICFILES_DIRS = [</span><br><span class="line">#     os.<span class="built_in">path</span>.join(BASE_DIR,'static')</span><br><span class="line"># ]</span><br><span class="line"></span><br><span class="line">STATIC_ROOT = os.<span class="built_in">path</span>.join(BASE_DIR, "static/")</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置完settings.py文件后在项目根目录下执行: python manage.py collectstatic,用于收集静态文件,执行后在项目根目录下的static文件夹下生成一个admin的文件夹</li>
+</ul>
+<h4 id="使用uwsgi启动django"><a href="#使用uwsgi启动django" class="headerlink" title="使用uwsgi启动django"></a>使用uwsgi启动django</h4><ul>
+<li><p>临时关闭防火墙</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>临时关闭selinux</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenforce <span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动项目</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --ini django_uwsgi.ini</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/django/" rel="tag"># django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/08/Django发送邮件/" rel="next" title="使用Django发送邮件">
+                <i class="fa fa-chevron-left"></i> 使用Django发送邮件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">李建昭</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/ThreePaooo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:496672009@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/shi-yu-sui-yue-tong-ge-zhu/activities" target="_blank" title="ZhiHu">
+                      
+                        <i class="fa fa-fw fa-zhihu"></i>ZhiHu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#所需环境"><span class="nav-number">1.</span> <span class="nav-text">所需环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境的安装"><span class="nav-number">2.</span> <span class="nav-text">环境的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意：依赖工具要在安装python3-6之前安装，否则后面在虚拟环境中安装uWSGI时，可能会报错"><span class="nav-number">2.0.1.</span> <span class="nav-text">注意：依赖工具要在安装python3.6之前安装，否则后面在虚拟环境中安装uWSGI时，可能会报错.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置项目"><span class="nav-number">3.</span> <span class="nav-text">配置项目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装django项目依赖的包"><span class="nav-number">3.0.1.</span> <span class="nav-text">安装django项目依赖的包</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在项目目录下配置uwsgi启动django的参数"><span class="nav-number">3.0.2.</span> <span class="nav-text">在项目目录下配置uwsgi启动django的参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置nginx"><span class="nav-number">3.0.3.</span> <span class="nav-text">配置nginx</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#配置项目文件-setting-py"><span class="nav-number">3.0.4.</span> <span class="nav-text">配置项目文件(setting.py)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用uwsgi启动django"><span class="nav-number">3.1.</span> <span class="nav-text">使用uwsgi启动django</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">李建昭</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
